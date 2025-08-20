@@ -1,0 +1,31 @@
+table users {
+    id serial [pk]
+    username varchar [unique]
+    email varchar
+}
+
+Table posts {
+    id serial[pk]
+    user_id int
+    title varchar
+    body text
+    created_at timestamp
+
+}
+Table perfil {
+    id serial [pk]
+    user_id int
+    profile_picture text    
+    lista_de_amigos int
+    numero_de_amigos int
+    post text
+}
+
+Table post_especial{
+    id serial [pk]
+    user_id int [ref: > users.id]
+    post text
+}
+    
+
+
