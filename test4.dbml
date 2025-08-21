@@ -1,0 +1,20 @@
+enum user_role {
+    ADMIN
+    USER
+    GUEST
+}
+
+Table users {
+    id serial [pk]
+    username varchar(50) [not null, unique]
+    password varchar(255) [not null]
+    email varchar [unique, not null]
+    role user_role [not null]
+    is_active boolean [not null, default: true]
+    name_job varchar(100) [default: 'UNICCUCES']
+    created_at timestamp [default: 'now()', not null]
+    updated_at timestamp
+    balance decimal(10, 2) [default: 0.00]
+    serial_number integer 
+    Mote: 'Tabla de usuarios del sistema'
+}
