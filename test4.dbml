@@ -14,7 +14,7 @@ Table users {
     name_job varchar(100) [default: 'UNICCUCES']
     created_at timestamp [default: 'now()', not null]
     updated_at timestamp
-    balance decimal(10, 2) [default: 0.00]
+    balance decimal(10,2) [default: 0.00]
     serial_number integer 
     Mote: 'Tabla de usuarios del sistema'
 }

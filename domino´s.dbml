@@ -1,0 +1,58 @@
+Table Cliente {
+  id_cliente serial [pk, not null]
+  nombre varchar(100) [not null]
+  telefono numeric(15,0) [not null] 
+  direccion varchar(200) [not null]
+  email varchar(100) [not null]
+}
+
+Table Pedido {
+  id_pedido serial [pk, not null]
+  id_cliente int [not null, ref: > Cliente.id_cliente]
+  fecha_hora timestamp [not null]
+  total numeric(10,2) [not null]
+  estado varchar(20) [not null] 
+}
+
+Table Producto {
+  id_ingrediente serial [pk, not null, ref: > Inventario.id_ingrediente]
+  id_producto serial [pk, not null]
+  nombre varchar(100) [not null]
+  descripcion text
+  precio numeric(8,2) [not null]
+}
+
+Table DetallePedido {
+  id_pedido int [not null, ref: > Pedido.id_pedido]
+  id_producto int [not null, ref: > Producto.id_producto]
+  cantidad int [not null]
+  subtotal numeric(10,2) [not null]
+
+  indexes {
+    (id_pedido, id_producto) [pk]
+  }
+}
+
+Table Empleado {
+  id_empleado serial [pk, not null]
+  nombre varchar(100) [not null]
+  rol varchar(50) [not null] 
+  telefono numeric(15,0) [not null]
+}
+
+Table Reparto {
+  id_pedido int [not null, ref: > Pedido.id_pedido]
+  id_empleado int [not null, ref: > Empleado.id_empleado]
+  hora_salida timestamp
+  hora_entrega timestamp
+
+  indexes {
+    (id_pedido, id_empleado) [pk]
+  }
+}
+
+Table Inventario {
+  id_ingrediente serial [pk, not null]
+  nombre varchar(100) [not null]
+  cantidad_disponible numeric(10,2) [not null]
+  unidad_medida varchar(20) [not null]
